@@ -17,6 +17,8 @@ fun main() {
         "Key" to "Value"
     )
 
+    con1.printNAndGetValue<Int>(10)
+    con1.printNAndGetValue("A")
 
 }
 
@@ -39,12 +41,17 @@ fun <T> geFunc3(param : T) {
     println("result = ${result}")
 }
 
-class Container<T>(value: T) {
-
-    val value : T? = null
+class Container<T>(val value: T?) {
 
     fun get() : T? {
         return if(value!=null) value else throw NoSuchElementException()
     }
 
+    fun <N> printNAndGetValue(param : N) : T?{ // 실행 중에 N은 Any?로 사용된다.
+        val result = get()
+        println("파라미터 값 : $param")
+        println("파라미터 타입 : ${param!!.javaClass.simpleName}")
+        println("result 타입 : ${result!!.javaClass.simpleName}")
+        return result
+    }
 }

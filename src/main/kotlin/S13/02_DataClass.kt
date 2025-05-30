@@ -27,6 +27,7 @@ fun main() {
 
     val member3 = member2.copy("MemberB")
     val member4 = member2.copy("MemberB", "MEMBER_B")
+    val member5 = member2.copy(code="MEMBER_B")
 
     println(member2.toString())
     println(member3.toString())
